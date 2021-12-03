@@ -9,26 +9,26 @@
 </head>
 <body>
 	<div class="wrap">
-		<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-			/*<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">*/
-			<input type="text" class="form-control"  id="nombre" name="nom" placeholder="Nombre:"/>
+		<form method="post" action="index.php" enctype="multipart/form-data">
 
-			<input type="text" class="form-control"  id="corre" name="correo" placeholder="Correo:"/>
+			<input type="text" class="form-control"  id="nombre" placeholder="Nombre:" name="nombre"/>
+			<input type="email" class="form-control"  id="correo" placeholder="Correo:" name="correo"/>
+			<textarea type="text" class="form-control" id="mensaje" placeholder="Mensaje:" name="mensaje"></textarea>
 
-			<textarea name="men" class="form-control" id="mensaje" placeholder="Mensaje:"></textarea>
-
-			<?php if (!empty($errores)): ?>
+			<?php if(strlen($errores)>0){?>
 				<div class="alert error">
 					<?php echo $errores; ?>
 				</div>
+			<?php }?>
 
-			<?php elseif ($enviado): ?>
+			<?php if(strlen($enviado)>0){?>
 				<div class="alert success">
+					<?php echo $enviado; ?>
 					<p>Enviado Correctamente</p>
 				</div>
-			<?php endif ?>
+			<?php }?>
 
-			<input type="submit" name="submit" class="btn btn-primary" value="Enviar Correo">
+			<input type="submit" class="btn btn-primary" name="submit" value="Enviar Correo">
 		</form>
 
 	</div>
